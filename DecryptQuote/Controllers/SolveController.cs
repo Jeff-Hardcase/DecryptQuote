@@ -19,8 +19,19 @@ namespace DecryptQuote.Controllers
             var gridModel = new DecryptQuote.Models.QuoteModel();
 
             gridModel.OriginalText = encryptedQuote;
-            gridModel.SplitText = encryptedQuote.Split('');
+            var alpha = "abcdefghijklmnopqrstuvwxyz";
 
+            //initialize the keystats with zero values
+            foreach(var c in alpha)
+            {
+                gridModel.KeyStats[c.ToString()] = 0;
+            }
+
+            //now increase the value when the puzzle values exist
+            foreach(var c in encryptedQuote)
+            {
+                gridModel.KeyStats[c.ToString()] += 1;
+            }
 
             return PartialView(gridModel);
         }

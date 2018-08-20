@@ -8,6 +8,11 @@ namespace DecryptQuote.Models
     public class QuoteModel
     {
         public string OriginalText { get; set; }
-        public string[] SplitText { get; set; }
+        public Dictionary<string,int> KeyStats { get; set; }
+
+        public QuoteModel()
+        {
+            KeyStats = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
+        }
     }
 }
